@@ -35,7 +35,7 @@ sed -i "/CONFIG_FIRMWARE_INCLUDE_DROPBEAR_FAST_CODE/d" .config  # 删除配置�
 sed -i "/CONFIG_FIRMWARE_INCLUDE_OPENSSH/d" .config             # 删除配置项 OpenSSH
 sed -i "/CONFIG_FIRMWARE_INCLUDE_DDNS_SSL/d"  .config           # HTTPS support for DDNS client
 sed -i "/CONFIG_FIRMWARE_INCLUDE_HTTPS/d"  .config              # HTTPS support
-
+sed -i "CONFIG_FIRMWARE_INCLUDE_LANG_CN/d" config
 # C大
 sed -i "/CONFIG_FIRMWARE_INCLUDE_MENTOHUST/d" .config    # 删除配置项 MENTOHUST
 sed -i "/CONFIG_FIRMWARE_INCLUDE_SCUTCLIENT/d" .config   # 删除配置项 SCUTCLIENT
@@ -89,10 +89,13 @@ echo "CONFIG_FIRMWARE_INCLUDE_DROPBEAR=y" >> .config
 echo "CONFIG_FIRMWARE_INCLUDE_DROPBEAR_FAST_CODE=y" >> .config
 
 ### Include HTTPS support for DDNS client. openssl ~1.2MB
-echo "CONFIG_FIRMWARE_INCLUDE_DDNS_SSL=y" >> .config
+echo "CONFIG_FIRMWARE_INCLUDE_DDNS_SSL=n" >> .config
 
 ### Include HTTPS support. openssl ~1.2MB
-echo "CONFIG_FIRMWARE_INCLUDE_HTTPS=y" >> .config
+echo "CONFIG_FIRMWARE_INCLUDE_HTTPS=n" >> .config
+
+## add openvpn suppout
+echo "CONFIG_FIRMWARE_INCLUDE_OPENVPN=y" >> .config
 
 #网易云解锁
 echo "CONFIG_FIRMWARE_INCLUDE_WYY=y" >> .config
