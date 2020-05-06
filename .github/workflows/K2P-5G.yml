@@ -1,7 +1,3 @@
-# # # # # # # # # # #
-#  自动构建 NEWIFI3
-#     花妆男
-# # # # # # # # # # #
 name: Build myK2P
 on:
   # schedule:                           # 时间表
@@ -84,13 +80,14 @@ jobs:
         do
         cp -f $WORK_PATH/trunk/configs/templates/$t_item.config .config  # 拷贝模板到 .config
         echo "执行 ${PUBLIC_SH} sh"
-        sudo $WORK_PATH/$PUBLIC_SH
+        #sudo $WORK_PATH/$PUBLIC_SH
         if [ -e $WORK_PATH/$t_item.sh ] ; then
           echo "执行自定义 ${t_item} sh"
-          sudo $WORK_PATH/$t_item.sh
+        #  sudo $WORK_PATH/$t_item.sh
         fi
         # 4. 清理构建
         sudo ./clear_tree
+        sudo sed -Ei 's/^\(sed\|echo\)/#/g' build_firmware_modify
         sudo ./build_firmware_modify $t_item          # $t_item  是循环的子对象
         sudo mv -f images/*.trx ${WORK_PATH}/images/
         done
